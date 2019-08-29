@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
+use App\Entity\Characters;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -12,21 +12,16 @@ class AppFixtures extends Fixture implements ContainerAwareInterface
 {
     public function load(ObjectManager $manager)
     {
-        $this->loadUsers($manager);
+        $this->loadCharacters($manager);
 	}
 
-	private function loadUsers(ObjectManager $manager)
+	private function loadCharacters(ObjectManager $manager)
     {
-        $passwordEncoder = $this->container->get('security.password_encoder');
-        $userAdmin = new User();
-        $userAdmin->setName('tony');
-        $userAdmin->setSurname('master');
-        $userAdmin->setUsername('tony_admin');
-        $userAdmin->setEmail('tony_admin@symfony.com');
-        $userAdmin->setRoles(['ROLE_ADMIN']);
-        $encodedPassword = $passwordEncoder->encodePassword($userAdmin, 'admin');
-        $userAdmin->setPassword($encodedPassword);
-        $manager->persist($userAdmin);
+        $Characters = new Characters();
+        $Characters->setName('Hero');
+        $Characters->setGame('1');
+        $Characters->setRange('MID');
+        $manager->persist($Characters);
         $manager->flush();
     }
 

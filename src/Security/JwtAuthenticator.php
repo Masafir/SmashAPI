@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationExc
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-use App\Entity\User;
+use App\Entity\Characters;
 
 class JwtAuthenticator extends AbstractGuardAuthenticator
 {
