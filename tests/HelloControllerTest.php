@@ -19,12 +19,24 @@ class HelloControllerTest extends WebTestCase
 
 	public function testIndex()
 	{
-		$response = $this->client->get('/', [
+		/* $response = $this->client->get('/', [
 			'json' => [
 				'hello' => 'This is a simple example of resource returned by your APIs'
 			]
-		]);
+		]); */
 
+		$name = 'blub';
+
+		$data = array(
+			'name' => $name,
+			'tagline' => 'dis iz a test'
+		);
+
+		$response = $this->client->post('/addCharacter', [
+			'body' => json_encode($data)
+		]);
+		dd($data);
 		$this->assertEquals(200, $response->getStatusCode());
 	}
+
 }

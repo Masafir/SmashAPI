@@ -14,7 +14,7 @@ use App\Entity\Game;
 class BasicController extends FOSRestController
 {
 	/**
-	 * @Route("/", name="charactersHome")
+	 * @Route("/", name="charactersHome", methods={"GET"})
      */
 
     public function indexAction(): Response
@@ -46,7 +46,7 @@ class BasicController extends FOSRestController
     }
 
     /**
-     * @Route("/characters", name="characters")
+     * @Route("/characters", name="characters", methods={"GET"})
      */
 
      public function getAllCharacters(): Response 
@@ -59,7 +59,7 @@ class BasicController extends FOSRestController
      }
 
      /**
-      * @Route("/characters/{game}", name="charactersByGame")
+      * @Route("/characters/{game}", name="charactersByGame", methods={"GET"})
       */
 
     public function getCharactersByGame($game): Response
@@ -70,7 +70,7 @@ class BasicController extends FOSRestController
     }
 
     /**
-     * @Route("/games", name="games")
+     * @Route("/games", name="games", methods={"GET"})
      */
 
      public function getAllGames(): Response
@@ -81,7 +81,7 @@ class BasicController extends FOSRestController
      }
 
      /**
-      * @Route("/game/{id}", name="gameId")
+      * @Route("/game/{id}", name="gameId", methods={"GET"})
       */
 
      public function getGameById($id): Response
@@ -92,7 +92,16 @@ class BasicController extends FOSRestController
      }
 
      /**
-      * @Route("/addCharacter", name="addCharacter")
+      * @Route("/addCharacter", name="addCharacter", methods={"POST"})
       */
+
+    public function addCharacter(Request $request): Response
+    {
+        $body = $request->getContent();
+        $data = json_decode($body, true);
+        dd($data);
+        return new Response($body); 
+
+    }
 
 }
